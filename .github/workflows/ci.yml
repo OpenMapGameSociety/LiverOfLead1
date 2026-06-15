@@ -3,10 +3,11 @@
 
 name: Continuous Integration
 on:
-  workflow_call:
-  push:
-  pull_request:
-  merge_group:
+  workflow_dispatch:
+  # workflow_call:
+  # push:
+  # pull_request:
+  # merge_group:
 
 jobs:
   build:
