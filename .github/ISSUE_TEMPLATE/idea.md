@@ -2,7 +2,7 @@
 name: Idea
 about: Create a new idea for the Idea Box
 title: "[Idea] "
-labels: Idea
+type: Idea
 assignees: ""
 ---
 
