@@ -2,10 +2,10 @@
 This document is used to specify the scope of the H2OI game.
 
 ## Project Abstract
-This project proposes a new modular design for organic real time map game. Modular because it will allow easy modification through mods. The game will use lock steps and a deterministic model in order to synchronize multiplayer, allowing a large number of player to easily play multiplayer games. The modularity will allow multiple scenario, a scenario can be the Normandy Landing, The 100 years War, or even the full WW2 from 1939 to 1945.
+This project proposes a new modular design for organic real time 3D map game. Modular because it will allow easy modification through mods. The game will use lock steps and a deterministic model in order to synchronize multiplayer, allowing a large number of player to easily play multiplayer games. The modularity will allow multiple scenario, a scenario can be the Normandy Landing, The 100 years War, or even the full WW2 from 1939 to 1945.
 
 ### High Level Requirement
-- Real Time strategic game, using a system of provinces
+- Real Time strategic 3D game, using a system of provinces
 - Limited Scope Scenarios, possible to expand it to full scale war and multiple theaters. The scaling is handled by the engine itself.
 - Modular design, allowing easy integration of mods and custom scenarios
 - Locksteps for the multiplayer, allowing a large number of player to play the same game.
