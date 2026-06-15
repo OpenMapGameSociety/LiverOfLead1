@@ -2,16 +2,27 @@
 This document is used to specify the scope of the H2OI game.
 
 ## Project Abstract
-This document proposes a novel application of a text message (SMS or Email) read-out and hands-free call interaction between an Android Smartphone and an infotainment platform (headunit) in a car environment. When a phone receives an SMS or Email, the text message is transferred from the phone to the headunit through a Bluetooth connection. On the headunit, the user can control which and when the received SMS or Email is read out through the in-vehicle audio system. The user may press one button on the headunit to activate the hands-free feature to call back the SMS sender.
+This project proposes a new modular design for organic real time map game. Modular because it will allow easy modification through mods. The game will use lock steps and a deterministic model in order to synchronize multiplayer, allowing a large number of player to easily play multiplayer games.
 
 ### High Level Requirement
-Describe the requirements – i.e., what the product does and how it does it from a user’s point of view – at a high level.
+- Real Time strategic game, using a system of provinces
+- Limited Scope Scenarios, possible to expand it to full scale war and multiple theaters
+- Modular design, allowing easy integration of mods and custom scenarios
+- Locksteps for the multiplayer
 
 ### Conceptual Design
-Describe the initial design concept: Hardware/software architecture, programming language, operating system, etc.
+From the backend to the frontend:
+- The static database: Maps, what country can do, the starting situation, the different buff poossible, etc... It is everthing that is fixed and parsed at the start.
+- The dynamic database: Unit created, what actions entities are doing, ongoing combats, etc... . It is everything that describe a running game. that will generate the savegame.
+- The engine: Every effect possibles, gives functions like Create_Unit, Start_War, etc... Writen in C++.
+- Scripting: Part of the static database, it is the mechanics that use the engine functions to create the scenario. Writen in GDScript.
+- The display is just a representation of the copmplete database: Doing action in the UI execute scripts that call function from the engines to change the state of the game (Modify the database)
+
+The game will try to stay multiplatform as much as possible
 
 ### Required Resources
-Discuss what you need to develop this project. This includes background information you will need to acquire, hardware resources, and software resources. If these are not part of the standard Computer Science Department lab resources, these must be identified early and discussed with the instructor.
+The Godot engine gives a good basic framework to implement our project. The engin will be written in C++ with the godot-cpp extension. Other needed library will be added if needed during development.
+
 
 ### Background & References
-The background will contain a more detailed description of the product and a comparison to existing similar projects/products. A literature search should be conducted and the results listed. Proper citation of sources is required. If there are similar open-source products, you should state whether existing source will be used and to what extent. If there are similar closed-source/proprietary products, you should state how the proposed product will be similar and different.
+See HoI4 :)
