@@ -1,0 +1,31 @@
+---
+name: hoi-format-fix
+description: Applies clang-format to HeartsofOpenIron C++ sources.
+disable-model-invocation: true
+allowed-tools:
+  - Bash(clang-format *)
+  - Bash(git status *)
+  - Bash(git diff *)
+---
+
+# /hoi-format-fix
+
+Apply C++ formatting to HeartsofOpenIron sources.
+
+## Workflow
+
+1. Run from `/home/alexandre/Documents/HeartsofOpenIron`.
+2. Before applying changes, check `git status --short`.
+3. If there are unrelated uncommitted changes, ask the user whether to continue.
+4. Run:
+
+   ```text
+   clang-format -i src/*.h src/*.cpp
+   ```
+
+5. Show `git diff --stat` and summarize the files changed.
+6. Do not stage or commit changes unless the user asks.
+
+## Current status
+
+!`git status --short`
