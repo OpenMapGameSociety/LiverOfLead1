@@ -43,7 +43,7 @@ build_profile=build_profile.json
 
 ## Workflow
 
-1. Run the build command from `/home/alexandre/Documents/HeartsofOpenIron`.
+1. Run the build command from the repository root.
 2. Use the default Linux debug command when no arguments are provided.
 3. If a shortcut is provided, translate it to SCons arguments.
 4. If raw SCons arguments are provided, run `scons` with the appended `ARGUMENTS` value. Do not run `scons` with an empty argument list; use the default command instead.

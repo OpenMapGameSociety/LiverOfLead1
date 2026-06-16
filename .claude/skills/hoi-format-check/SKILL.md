@@ -13,7 +13,7 @@ Check C++ formatting without modifying files.
 
 ## Workflow
 
-1. Run from `/home/alexandre/Documents/HeartsofOpenIron`.
+1. Run from the repository root.
 2. Run:
 
    ```text

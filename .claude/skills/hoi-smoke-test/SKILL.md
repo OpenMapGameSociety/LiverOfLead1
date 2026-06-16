@@ -16,7 +16,7 @@ Run the fast local validation flow for HeartsofOpenIron.
 
 ## Workflow
 
-Run these steps in order from `/home/alexandre/Documents/HeartsofOpenIron`:
+Run these steps in order from the repository root:
 
 1. Check C++ formatting:
 

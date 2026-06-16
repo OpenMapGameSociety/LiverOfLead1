@@ -14,7 +14,7 @@ Apply C++ formatting to HeartsofOpenIron sources.
 
 ## Workflow
 
-1. Run from `/home/alexandre/Documents/HeartsofOpenIron`.
+1. Run from the repository root.
 2. Before applying changes, check `git status --short`.
 3. If there are unrelated uncommitted changes, ask the user whether to continue.
 4. Run:

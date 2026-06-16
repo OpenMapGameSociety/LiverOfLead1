@@ -21,7 +21,7 @@ Run CI-style checks for HeartsofOpenIron.
 
 ## Local default
 
-From `/home/alexandre/Documents/HeartsofOpenIron`, run:
+From the repository root, run:
 
 ```text
 clang-format src/*.h src/*.cpp --dry-run --Werror
