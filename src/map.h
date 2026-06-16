@@ -20,6 +20,7 @@ class Map: public MeshInstance3D {
     public:
         Map();
         ~Map();
+        void _ready() override;
 
         void set_map_image(Image *image);
 
