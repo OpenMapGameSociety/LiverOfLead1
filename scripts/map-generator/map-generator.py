@@ -47,11 +47,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     return parser
 
-def generate_random_provinces_map_seedling(
-        image_path : str,
+def generate_random_provinces_map_seedlings(
         dims : tuple[int, int],
         province_size : int) -> np.ndarray:
-    """Create a random provinces map. The placement of the provinces is random and no size is guaranteed
+    """Generate a number seedlings, lone pixels with a unique color that can be used to grow the map
     """
     image = np.zeros((dims[0], dims[1], 3), np.uint8)
 
@@ -74,9 +73,55 @@ def generate_random_provinces_map_seedling(
         colors.add(color)
         image[coords[0], coords[1]] = color
 
-    # Grow the pixels randomly
-    list_seedlings = list(seedlings)
+    return image
+
+
+def erode_map(image : np.ndarray, passes : int) -> np.ndarray:
+    """Erode color boundaries. Execute a certain number of passes"""
+    if passes <= 0:
+        return image
+    w, h, _ = image.shape
     empty_pixel = np.zeros(3, np.uint8)
+    if erode_map.inverted:
+        for y in reversed(range(h)):
+            for x in reversed(range(w)):
+                if x == 0 or x == w - 1 or h == 0 or y == h - 1 or \
+                        np.any(image[x, y] != image[x - 1, y]) or \
+                        np.any(image[x, y] != image[x, y - 1]):
+                    image[x, y] = empty_pixel
+        erode_map.inverted = False
+        return erode_map(image, passes - 1)
+    for y in range(h):
+        for x in range(w):
+            if x == 0 or x == w - 1 or h == 0 or y == h - 1 or \
+                    np.any(image[x, y] != image[x + 1, y]) or \
+                    np.any(image[x, y] != image[x, y + 1]):
+                image[x, y] = empty_pixel
+
+    erode_map.inverted = True
+    return erode_map(image, passes - 1)
+erode_map.inverted = False
+
+def grow_pixel(image : np.ndarray) -> np.ndarray:
+    w, h, _ = image.shape
+    empty_pixel = np.zeros(3, np.uint8)
+
+    # Get the pixels that can seed
+    set_seedlings = set()
+    for y in range(h-1):
+        for x in range(w-1):
+            if np.any(image[x, y] != image[x + 1, y]):
+                if np.any(image[x, y] != empty_pixel):
+                    set_seedlings.add((x, y))
+                if np.any(image[x + 1, y] != empty_pixel):
+                    set_seedlings.add((x + 1, y))
+            if np.any(image[x, y] != image[x, y + 1]):
+                if np.any(image[x, y] != empty_pixel):
+                    set_seedlings.add((x, y))
+                if np.any(image[x, y + 1] != empty_pixel):
+                    set_seedlings.add((x, y + 1))
+
+    list_seedlings = list(set_seedlings)
     while len(list_seedlings):
         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         shuffle(directions)
@@ -86,7 +131,7 @@ def generate_random_provinces_map_seedling(
         for dx, dy in directions:
             nx, ny = x + dx, y + dy
             if 0 <= nx < w and 0 <= ny < h and np.all(image[nx, ny] == empty_pixel):
-                image[nx, ny] = image[x, y]
+                image[nx, ny] = image[x, y].copy()
                 list_seedlings.append((nx, ny))
                 assigned = True
                 break
@@ -104,9 +149,27 @@ def main() -> int:
     print(f"Generate map data in folder: {args.folder_name}")
     os.makedirs(args.folder_name, exist_ok=True)
 
+    gif_frames = []
+    def save_gif_frame(image):
+        gif_frames.append(Image.fromarray(image, mode="RGB"))
+    def save_gif(path):
+        gif_frames[0].save(path,
+               save_all=True, append_images=gif_frames[1:], optimize=False, duration=400, loop=0)
+
     # Generating the province map
     provinces_bmp_path = os.path.join(args.folder_name, PROVINCES_BMP_NAME)
-    image = generate_random_provinces_map_seedling(provinces_bmp_path, (args.height, args.width), args.province_size)
+    image = generate_random_provinces_map_seedlings((args.height, args.width), args.province_size)
+    save_gif_frame(image)
+    image = grow_pixel(image)
+    save_gif_frame(image)
+    for i in range(5):
+        image = erode_map(image, 2)
+        save_gif_frame(image)
+        image = grow_pixel(image)
+        save_gif_frame(image)
+        print(i)
+
+    save_gif("test.gif")
 
     pil_image = Image.fromarray(image, mode="RGB")
     pil_image.save(provinces_bmp_path)
