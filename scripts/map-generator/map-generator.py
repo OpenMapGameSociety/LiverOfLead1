@@ -4,7 +4,9 @@ import argparse
 from pathlib import Path
 
 import os, sys
+from random import randint, shuffle, choice
 from PIL import Image
+import numpy as np
 
 PROVINCES_BMP_NAME = "provinces.bmp"
 
@@ -48,11 +50,50 @@ def build_parser() -> argparse.ArgumentParser:
 def generate_random_provinces_map_seedling(
         image_path : str,
         dims : tuple[int, int],
-        province_size : int) -> Image:
+        province_size : int) -> np.ndarray:
     """Create a random provinces map. The placement of the provinces is random and no size is guaranteed
     """
-    image = Image.new("RGB", dims)
-    
+    image = np.zeros((dims[0], dims[1], 3), np.uint8)
+
+    w = dims[0]
+    h = dims[1]
+    nmb_seedlings = int(w*h/province_size)
+
+    # Generate the first pixels
+    seedlings = set()
+    colors = set([(0, 0, 0)]) # Pure black use for empty
+    for i in range(nmb_seedlings):
+        coords = (randint(0, w-1), randint(0, h-1))
+        while coords in seedlings:
+            coords = (randint(0, w-1), randint(0, h-1))
+        seedlings.add(coords)
+
+        color = (randint(0, 255), randint(0, 255), randint(0, 255))
+        while color in colors:
+            color = (randint(0, 255), randint(0, 255), randint(0, 255))
+        colors.add(color)
+        image[coords[0], coords[1]] = color
+
+    # Grow the pixels randomly
+    list_seedlings = list(seedlings)
+    empty_pixel = np.zeros(3, np.uint8)
+    while len(list_seedlings):
+        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        shuffle(directions)
+        idx = randint(0, len(list_seedlings) - 1)
+        x, y = list_seedlings[idx]
+        assigned = False
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < w and 0 <= ny < h and np.all(image[nx, ny] == empty_pixel):
+                image[nx, ny] = image[x, y]
+                list_seedlings.append((nx, ny))
+                assigned = True
+                break
+        if not assigned:
+            list_seedlings[idx] = list_seedlings[-1]
+            list_seedlings.pop()
+
     return image
 
 def main() -> int:
@@ -65,9 +106,11 @@ def main() -> int:
 
     # Generating the province map
     provinces_bmp_path = os.path.join(args.folder_name, PROVINCES_BMP_NAME)
-    image = generate_random_provinces_map_seedling(provinces_bmp_path, (args.width, args.height), args.province_size)
+    image = generate_random_provinces_map_seedling(provinces_bmp_path, (args.height, args.width), args.province_size)
 
-
+    pil_image = Image.fromarray(image, mode="RGB")
+    pil_image.save(provinces_bmp_path)
+    pil_image.close()
     return 0
 
 
