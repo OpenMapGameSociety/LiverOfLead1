@@ -20,18 +20,18 @@ jobs:
         # while still achieving adequate coverage.
         # To make a full build with all combinations, use the make_build.yml workflow instead.
         include:
-          - target: { platform: linux, arch: x86_64, os: ubuntu-22.04 }
+          - target: { platform: linux, arch: x64, os: ubuntu-22.04 }
             target-type: template_debug
             float-precision: double
-          - target: { platform: windows, arch: x86_64, os: windows-latest }
+          - target: { platform: windows, arch: x64, os: windows-latest }
             target-type: template_release
-            float-precision: single
+            float-precision: double
           - target: { platform: macos, arch: universal, os: macos-latest }
             target-type: template_debug
-            float-precision: single
+            float-precision: double
           - target: { platform: android, arch: arm64, os: ubuntu-22.04 }
             target-type: template_debug
-            float-precision: single
+            float-precision: double
           - target: { platform: web, arch: wasm32, os: ubuntu-22.04 }
             target-type: template_release
             float-precision: double
@@ -53,12 +53,6 @@ jobs:
       #  shell: bash
       #  run: |
       #    clang-format src/** --dry-run --Werror
-
-      # Add linux x86_32 toolchain
-      - name: Install multilib support
-        if: ${{ matrix.target.platform == 'linux' && matrix.target.arch == 'x86_32' }}
-        run: |
-          sudo apt-get update && sudo apt-get install -y gcc-multilib g++-multilib
 
       # Setup dependencies
       - name: Setup godot-cpp
