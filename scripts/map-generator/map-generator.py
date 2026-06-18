@@ -12,6 +12,8 @@ import numpy as np
 class MapGenerator:
 
     PROVINCES_BMP_NAME = "provinces.bmp"
+    PROVINCES_CSV_NAME = "provinces.csv"
+
     TEST_GIF_NAME = "test.gif"
     INTERMEDIATE_IMAGE_NAME = "intermediate{}.png"
     GIF_FRAME_PERIOD = 100
@@ -48,6 +50,7 @@ class MapGenerator:
             pil_image.close()
 
     def generate_image(self) -> None:
+        """Generate the provinces bmp picture after the generation steps"""
         provinces_bmp_path = os.path.join(self.folder, MapGenerator.PROVINCES_BMP_NAME)
         pil_image = Image.fromarray(self.image, mode="RGB")
         pil_image.save(provinces_bmp_path)
@@ -56,6 +59,21 @@ class MapGenerator:
             path = os.path.join(self.folder, MapGenerator.TEST_GIF_NAME)
             self.gif_images[0].save(path,
                 save_all=True, append_images=self.gif_images[1:], optimize=False, duration=MapGenerator.GIF_FRAME_PERIOD, loop=0)
+            
+    def generate_provinces_csv(self) -> None:
+        """Generate the provinces csv file from the current provinces picture"""
+        w = self.w
+        h = self.h
+
+        colors = set()
+        for x in range(w):
+            for y in range(h):
+                colors.add(tuple(self.image[x, y]))
+
+        file_path = os.path.join(self.folder, MapGenerator.PROVINCES_CSV_NAME)
+        with open(file_path, "w") as fd:
+            for i, color in enumerate(colors):
+                fd.write(f"{i};{color[0]};{color[1]};{color[2]}\n")
 
     def generate_random_provinces_map_seedlings(self, province_size : int) -> None:
         """Generate a number seedlings, lone pixels with a unique color that can be used to grow the map
@@ -247,6 +265,7 @@ def main() -> int:
         map_generator.grow_pixel()
 
     map_generator.generate_image()
+    map_generator.generate_provinces_csv()
     print(f"Elapsed {time.time() - start_time:.2f} seconds")
 
     return 0
