@@ -1,4 +1,4 @@
-# HeartsofOpenIron Claude Code skills
+# LiverOfLead1 Claude Code skills
 
 This repo includes project-local Claude Code skills under `.claude/skills/`. Invoke them with `/skill-name`.
 

@@ -1,6 +1,6 @@
 ---
 name: hoi-format-check
-description: Checks C++ formatting for HeartsofOpenIron with clang-format.
+description: Checks C++ formatting for LiverOfLead1 with clang-format.
 disable-model-invocation: true
 allowed-tools:
   - Bash(clang-format *)

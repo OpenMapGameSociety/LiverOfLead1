@@ -1,6 +1,6 @@
 ---
 name: hoi-build
-description: Builds the HeartsofOpenIron Godot GDExtension with SCons.
+description: Builds the LiverOfLead1 Godot GDExtension with SCons.
 disable-model-invocation: true
 argument-hint: "[linux-debug|linux-release|windows-debug|windows-release|raw scons args]"
 allowed-tools:
@@ -12,7 +12,7 @@ allowed-tools:
 
 # /hoi-build
 
-Build the HeartsofOpenIron GDExtension from the repository root.
+Build the LiverOfLead1 GDExtension from the repository root.
 
 ## Arguments
 

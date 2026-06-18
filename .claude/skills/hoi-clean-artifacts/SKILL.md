@@ -1,6 +1,6 @@
 ---
 name: hoi-clean-artifacts
-description: Lists and optionally removes HeartsofOpenIron build artifacts.
+description: Lists and optionally removes LiverOfLead1 build artifacts.
 disable-model-invocation: true
 allowed-tools:
   - Bash(find *)
@@ -11,7 +11,7 @@ allowed-tools:
 
 # /hoi-clean-artifacts
 
-List and optionally remove local build artifacts for HeartsofOpenIron.
+List and optionally remove local build artifacts for LiverOfLead1.
 
 ## Safety rules
 

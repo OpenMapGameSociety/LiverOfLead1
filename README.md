@@ -1,2 +1,2 @@
-# HeartsofOpenIron
-An open-source Grand Strategy
+# LiverOfLead1
+An open-source Grand Strategy Game

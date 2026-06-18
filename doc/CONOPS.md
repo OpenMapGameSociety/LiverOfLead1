@@ -1,4 +1,4 @@
-# Hearts Of Open Iron Game Condition Of Operation
+# Liver Of Lead 1 Game Condition Of Operation
 This document is used to specify the scope of the H2OI game.
 
 ## Project Abstract
