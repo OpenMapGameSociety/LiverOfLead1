@@ -232,7 +232,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--gen-erosion-pictures",
         action="store_true",
-        help="Also save the erotion steps in the gif and/or the intermediate png files.",
+        help="Also save the erosion steps in the gif and/or the intermediate png files.",
     )
     return parser
 
