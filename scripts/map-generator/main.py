@@ -17,6 +17,12 @@ def build_parser() -> argparse.ArgumentParser:
         if ivalue <= 0:
             raise argparse.ArgumentTypeError(f"{value} is an invalid positive int value")
         return ivalue
+    
+    def check_positive_flt(value):
+        fvalue = float(value)
+        if fvalue <= 0:
+            raise argparse.ArgumentTypeError(f"{value} is an invalid positive float value")
+        return fvalue
 
     def check_non_negative(value):
         ivalue = int(value)
@@ -50,6 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=check_positive,
         help="The average province size in pixels.",
     )
+    # Erosion parameters
     parser.add_argument(
         "--erode-steps",
         type=check_non_negative,
@@ -76,6 +83,36 @@ def build_parser() -> argparse.ArgumentParser:
         "--gen-erosion-pictures",
         action="store_true",
         help="Also save the erosion steps in the gif and/or the intermediate png files.",
+    )
+    # Heightmap parameters
+    parser.add_argument(
+        "--hm-scale",
+        type=check_positive,
+        default=100,
+        help="Scale of the noise for the heightmap generation.",
+    )
+    parser.add_argument(
+        "--hm-octaves",
+        type=check_positive,
+        default=4,
+        help="Number of octaves for the heightmap generation.",
+    )
+    parser.add_argument(
+        "--hm-persistence",
+        type=check_positive_flt,
+        default=0.5,
+        help="Amplitude factor applied at each octave. Higher mean rougher terrain.",
+    )
+    parser.add_argument(
+        "--hm-lacunarity",
+        type=check_positive_flt,
+        default=2.0,
+        help="Frequency factor applied at each octave. Higher means more high frequencies.",
+    )
+    parser.add_argument(
+        "--hm-perlin",
+        action="store_true",
+        help="Use pure Perlin noise for the heightmap generation.",
     )
     return parser
 
@@ -109,6 +146,14 @@ def main() -> int:
 
     map_generator.generate_image()
     map_generator.generate_provinces_csv()
+    print(f"Finished generating the province bitmap and its CSV.")
+    print(f"Elapsed {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+
+    # Generate a random height map
+    print(f"Starting generating the heightmap.")
+    print(f"Noise: {"Simplex" if args.hm_perlin else "Perlin"}, Scale: {args.hm_scale}, Octaves: {args.hm_octaves}, Persistence: {args.hm_persistence}, Lacunarity: {args.hm_lacunarity}")
+    map_generator.generate_heightmap(args.hm_perlin, args.hm_scale, args.hm_octaves, args.hm_persistence, args.hm_lacunarity)
     print(f"Elapsed {time.time() - start_time:.2f} seconds")
 
     return 0

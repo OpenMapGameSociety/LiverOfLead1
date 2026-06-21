@@ -3,10 +3,13 @@ from random import randint, shuffle
 from PIL import Image
 import numpy as np
 
+from src.perlin import *
+
 class MapGenerator:
 
     PROVINCES_BMP_NAME = "provinces.bmp"
     PROVINCES_CSV_NAME = "provinces.csv"
+    HEIGHTMAP_BMP_NAME = "heightmap.bmp"
 
     TEST_GIF_NAME = "test.gif"
     INTERMEDIATE_IMAGE_NAME = "intermediate{}.png"
@@ -53,6 +56,27 @@ class MapGenerator:
             path = os.path.join(self.folder, MapGenerator.TEST_GIF_NAME)
             self.gif_images[0].save(path,
                 save_all=True, append_images=self.gif_images[1:], optimize=False, duration=MapGenerator.GIF_FRAME_PERIOD, loop=0)
+            
+    def generate_heightmap(self, perlin : bool, scale : int, octaves : int, persistence : float, lacunarity : float) -> None:
+        """Generate the heightmap texture.
+        :param perlin bool: Generate the heightmap with Improved Perlin instead of Simplex Noise
+        :param scale float: Scale of the texture
+        :param octaves int: Number of octaves
+        :param persistence float: Persistence of an octave
+        :param lacunarity float: Lacunarity of an octave"""
+        hm_generator = PerlinGenerator(self.w, self.h,
+            scale, octaves, persistence, lacunarity)
+        if perlin:
+            img = hm_generator.generate_perlin()
+        else:
+            img = hm_generator.generate_simplex()
+        img = img * 255
+        img = img.astype(np.uint8)
+
+        heightmap_bmp_path = os.path.join(self.folder, MapGenerator.HEIGHTMAP_BMP_NAME)
+        pil_image = Image.fromarray(img, mode="L")
+        pil_image.save(heightmap_bmp_path)
+        pil_image.close()
             
     def generate_provinces_csv(self) -> None:
         """Generate the provinces csv file from the current provinces picture"""

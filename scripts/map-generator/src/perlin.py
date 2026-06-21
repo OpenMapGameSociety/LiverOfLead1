@@ -30,8 +30,10 @@ class PerlinGenerator:
         xs = np.arange(self.width) / self.scale
         ys = np.arange(self.height) / self.scale
 
+        base = np.random.rand() * 100000
+        print(self.octaves)
         img = np.array([
-            [pnoise2(x, y, octaves=self.octaves, persistence=self.persistence, lacunarity=self.lacunarity) for x in xs]
+            [pnoise2(x, y, octaves=self.octaves, persistence=self.persistence, lacunarity=self.lacunarity, base=int(base)) for x in xs]
             for y in ys
         ])
 
@@ -45,8 +47,10 @@ class PerlinGenerator:
         xs = np.arange(self.width) / self.scale
         ys = np.arange(self.height) / self.scale
 
+        base = np.random.rand() * 100000
+
         img = np.array([
-            [snoise2(x, y, octaves=self.octaves, persistence=self.persistence, lacunarity=self.lacunarity) for x in xs]
+            [snoise2(x, y, octaves=self.octaves, persistence=self.persistence, lacunarity=self.lacunarity, base=base) for x in xs]
             for y in ys
         ])
 
