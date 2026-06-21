@@ -20,21 +20,21 @@ jobs:
         # while still achieving adequate coverage.
         # To make a full build with all combinations, use the make_build.yml workflow instead.
         include:
-          - target: { platform: linux, arch: x64, os: ubuntu-22.04 }
+          - target: { platform: linux, arch: x64, os: ubuntu-latest }
             target-type: template_debug
-            float-precision: double
+            float-precision: single
           - target: { platform: windows, arch: x64, os: windows-latest }
             target-type: template_release
-            float-precision: double
+            float-precision: single
           - target: { platform: macos, arch: universal, os: macos-latest }
             target-type: template_debug
-            float-precision: double
-          - target: { platform: android, arch: arm64, os: ubuntu-22.04 }
+            float-precision: single
+          - target: { platform: android, arch: arm64, os: ubuntu-latest }
             target-type: template_debug
-            float-precision: double
-          - target: { platform: web, arch: wasm32, os: ubuntu-22.04 }
+            float-precision: single
+          - target: { platform: web, arch: wasm32, os: ubuntu-latest }
             target-type: template_release
-            float-precision: double
+            float-precision: single
 
     runs-on: ${{ matrix.target.os }}
     steps:
