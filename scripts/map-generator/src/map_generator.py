@@ -72,9 +72,10 @@ class MapGenerator:
             img = hm_generator.generate_simplex()
         img = img * 255
         img = img.astype(np.uint8)
+        img = np.dstack((img, img, img))
 
         heightmap_bmp_path = os.path.join(self.folder, MapGenerator.HEIGHTMAP_BMP_NAME)
-        pil_image = Image.fromarray(img, mode="L")
+        pil_image = Image.fromarray(img, mode="RGB")
         pil_image.save(heightmap_bmp_path)
         pil_image.close()
             
