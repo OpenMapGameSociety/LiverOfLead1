@@ -1,7 +1,8 @@
 # Map Generator
 ```
 usage: map-generator.py [-h] [--erode-steps ERODE_STEPS] [--erode-width ERODE_WIDTH] [--enable-gif] [--enable-gen-png]
-                        [--gen-erosion-pictures]
+                        [--gen-erosion-pictures] [--hm-scale HM_SCALE] [--hm-octaves HM_OCTAVES]
+                        [--hm-persistence HM_PERSISTENCE] [--hm-lacunarity HM_LACUNARITY] [--hm-perlin]
                         folder_name width height province_size
 
 Generate a random map for the engine
@@ -22,6 +23,14 @@ options:
   --enable-gen-png      Save each generation steps in its own png file.
   --gen-erosion-pictures
                         Also save the erosion steps in the gif and/or the intermediate png files.
+  --hm-scale HM_SCALE   Scale of the noise for the heightmap generation.
+  --hm-octaves HM_OCTAVES
+                        Number of octaves for the heightmap generation.
+  --hm-persistence HM_PERSISTENCE
+                        Amplitude factor applied at each octave. Higher mean rougher terrain.
+  --hm-lacunarity HM_LACUNARITY
+                        Frequency factor applied at each octave. Higher means more high frequencies.
+  --hm-perlin           Use pure Perlin noise for the heightmap generation.
 
 Example: map-generator map 500 600 80
 ```
