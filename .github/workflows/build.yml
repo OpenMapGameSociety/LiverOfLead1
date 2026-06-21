@@ -1,13 +1,13 @@
 # For syntax, see https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
 # This workflow is automatically triggered for every push and pull request, to verify that everything still builds.
 
-name: Continuous Integration
+name: Build
 on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
-  # workflow_call:
-  # push:
-  # pull_request:
-  # merge_group:
 
 jobs:
   build:
@@ -43,16 +43,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
-
-      # Lint
-      #- name: Setup clang-format
-      #  shell: bash
-      #  run: |
-      #    python -m pip install clang-format
-      #- name: Run clang-format
-      #  shell: bash
-      #  run: |
-      #    clang-format src/** --dry-run --Werror
 
       # Setup dependencies
       - name: Setup godot-cpp
