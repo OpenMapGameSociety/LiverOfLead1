@@ -1,6 +1,6 @@
 ---
-name: hoi-build
-description: Builds the HeartsofOpenIron Godot GDExtension with SCons.
+name: lol-build
+description: Builds the LiverOfLead1 Godot GDExtension with SCons.
 disable-model-invocation: true
 argument-hint: "[linux-debug|linux-release|windows-debug|windows-release|raw scons args]"
 allowed-tools:
@@ -10,9 +10,9 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-build
+# /lol-build
 
-Build the HeartsofOpenIron GDExtension from the repository root.
+Build the LiverOfLead1 GDExtension from the repository root.
 
 ## Arguments
 
@@ -32,7 +32,7 @@ Supported shortcuts:
 Raw SCons arguments are also supported, for example:
 
 ```text
-/hoi-build target=template_release platform=linux arch=x86_64 precision=single
+/lol-build target=template_release platform=linux arch=x86_64 precision=single
 ```
 
 If the user asks to use the example build profile, add:

@@ -1,6 +1,6 @@
 ---
-name: hoi-smoke-test
-description: Runs the HeartsofOpenIron local smoke test: formatting plus Linux debug build.
+name: lol-smoke-test
+description: Runs the LiverOfLead1 local smoke test: formatting plus Linux debug build.
 disable-model-invocation: true
 allowed-tools:
   - Bash(clang-format *)
@@ -10,9 +10,9 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-smoke-test
+# /lol-smoke-test
 
-Run the fast local validation flow for HeartsofOpenIron.
+Run the fast local validation flow for LiverOfLead1.
 
 ## Workflow
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-HeartsofOpenIron aims to become an open-source Paradox Entertainment-like grand strategy map game set in the World War II era, implemented as a Godot 4 GDExtension project written in C++ with `godot-cpp` bindings. The extension library is named `EXTENSION-NAME` in the build files and is copied into the Godot project under `project/bin/<platform>/`.
+LiverOfLead1 aims to become an open-source Paradox Entertainment-like grand strategy map game set in the World War II era, implemented as a Godot 4 GDExtension project written in C++ with `godot-cpp` bindings. The extension library is named `EXTENSION-NAME` in the build files and is copied into the Godot project under `project/bin/<platform>/`.
 
 The repository is currently a small GDExtension template rather than a full game implementation:
 - `src/register_types.cpp` is the GDExtension entry point and registers native classes.

@@ -1,6 +1,6 @@
 ---
-name: hoi-ci-check
-description: Runs or plans the HeartsofOpenIron CI-style checks.
+name: lol-ci-check
+description: Runs or plans the LiverOfLead1 CI-style checks.
 disable-model-invocation: true
 argument-hint: "[local|full|raw scons args]"
 allowed-tools:
@@ -9,9 +9,9 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-ci-check
+# /lol-ci-check
 
-Run CI-style checks for HeartsofOpenIron.
+Run CI-style checks for LiverOfLead1.
 
 ## Arguments
 
