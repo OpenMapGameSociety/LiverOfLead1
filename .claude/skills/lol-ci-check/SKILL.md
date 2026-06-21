@@ -1,5 +1,5 @@
 ---
-name: hoi-ci-check
+name: lol-ci-check
 description: Runs or plans the LiverOfLead1 CI-style checks.
 disable-model-invocation: true
 argument-hint: "[local|full|raw scons args]"
@@ -9,7 +9,7 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-ci-check
+# /lol-ci-check
 
 Run CI-style checks for LiverOfLead1.
 

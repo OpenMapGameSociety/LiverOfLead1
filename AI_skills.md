@@ -4,40 +4,40 @@ This repo includes project-local Claude Code skills under `.claude/skills/`. Inv
 
 | Skill | Command | Purpose |
 | --- | --- | --- |
-| Build | `/hoi-build` | Build the Godot GDExtension with SCons. Defaults to Linux debug. |
-| Format check | `/hoi-format-check` | Run `clang-format --dry-run --Werror` without modifying files. |
-| Format fix | `/hoi-format-fix` | Apply `clang-format -i` to C++ sources after checking the working tree. |
-| Smoke test | `/hoi-smoke-test` | Run formatting check plus the default Linux debug build. |
-| CI check | `/hoi-ci-check` | Run local CI-style checks or list/run the full CI matrix when requested. |
-| Clean artifacts | `/hoi-clean-artifacts` | List build artifacts and delete only approved candidates. |
+| Build | `/lol-build` | Build the Godot GDExtension with SCons. Defaults to Linux debug. |
+| Format check | `/lol-format-check` | Run `clang-format --dry-run --Werror` without modifying files. |
+| Format fix | `/lol-format-fix` | Apply `clang-format -i` to C++ sources after checking the working tree. |
+| Smoke test | `/lol-smoke-test` | Run formatting check plus the default Linux debug build. |
+| CI check | `/lol-ci-check` | Run local CI-style checks or list/run the full CI matrix when requested. |
+| Clean artifacts | `/lol-clean-artifacts` | List build artifacts and delete only approved candidates. |
 
 ## Usage examples
 
 ```text
-/hoi-build
-/hoi-build windows-release
-/hoi-build target=template_release platform=linux arch=x86_64 precision=single
+/lol-build
+/lol-build windows-release
+/lol-build target=template_release platform=linux arch=x86_64 precision=single
 
-/hoi-format-check
-/hoi-format-fix
+/lol-format-check
+/lol-format-fix
 
-/hoi-smoke-test
+/lol-smoke-test
 
-/hoi-ci-check
-/hoi-ci-check local
-/hoi-ci-check full
+/lol-ci-check
+/lol-ci-check local
+/lol-ci-check full
 
-/hoi-clean-artifacts
+/lol-clean-artifacts
 ```
 
 ## Skill locations
 
-- `.claude/skills/hoi-build/SKILL.md`
-- `.claude/skills/hoi-format-check/SKILL.md`
-- `.claude/skills/hoi-format-fix/SKILL.md`
-- `.claude/skills/hoi-smoke-test/SKILL.md`
-- `.claude/skills/hoi-ci-check/SKILL.md`
-- `.claude/skills/hoi-clean-artifacts/SKILL.md`
+- `.claude/skills/lol-build/SKILL.md`
+- `.claude/skills/lol-format-check/SKILL.md`
+- `.claude/skills/lol-format-fix/SKILL.md`
+- `.claude/skills/lol-smoke-test/SKILL.md`
+- `.claude/skills/lol-ci-check/SKILL.md`
+- `.claude/skills/lol-clean-artifacts/SKILL.md`
 
 ## Notes
 

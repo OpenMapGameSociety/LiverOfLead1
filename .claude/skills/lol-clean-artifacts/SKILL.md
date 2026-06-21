@@ -1,5 +1,5 @@
 ---
-name: hoi-clean-artifacts
+name: lol-clean-artifacts
 description: Lists and optionally removes LiverOfLead1 build artifacts.
 disable-model-invocation: true
 allowed-tools:
@@ -9,7 +9,7 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-clean-artifacts
+# /lol-clean-artifacts
 
 List and optionally remove local build artifacts for LiverOfLead1.
 

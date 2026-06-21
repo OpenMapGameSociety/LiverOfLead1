@@ -1,5 +1,5 @@
 ---
-name: hoi-format-fix
+name: lol-format-fix
 description: Applies clang-format to LiverOfLead1 C++ sources.
 disable-model-invocation: true
 allowed-tools:
@@ -8,7 +8,7 @@ allowed-tools:
   - Bash(git diff *)
 ---
 
-# /hoi-format-fix
+# /lol-format-fix
 
 Apply C++ formatting to LiverOfLead1 sources.
 

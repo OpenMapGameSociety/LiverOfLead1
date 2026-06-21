@@ -1,5 +1,5 @@
 ---
-name: hoi-smoke-test
+name: lol-smoke-test
 description: Runs the LiverOfLead1 local smoke test: formatting plus Linux debug build.
 disable-model-invocation: true
 allowed-tools:
@@ -10,7 +10,7 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-smoke-test
+# /lol-smoke-test
 
 Run the fast local validation flow for LiverOfLead1.
 

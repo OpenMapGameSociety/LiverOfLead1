@@ -1,5 +1,5 @@
 ---
-name: hoi-format-check
+name: lol-format-check
 description: Checks C++ formatting for LiverOfLead1 with clang-format.
 disable-model-invocation: true
 allowed-tools:
@@ -7,7 +7,7 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# /hoi-format-check
+# /lol-format-check
 
 Check C++ formatting without modifying files.
 
@@ -22,7 +22,7 @@ Check C++ formatting without modifying files.
 
 3. If `clang-format` is missing, tell the user to install it and do not modify files.
 4. Report whether formatting passed.
-5. If formatting failed, explain that `/hoi-format-fix` can apply the formatter.
+5. If formatting failed, explain that `/lol-format-fix` can apply the formatter.
 
 ## Current status
 
