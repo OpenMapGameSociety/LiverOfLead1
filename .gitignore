@@ -2,6 +2,10 @@
 *.gen.*
 .godot/
 
+# Ignore cache files from map generation
+scripts/map-generator/cache/
+scripts/map-generator/maps/
+
 # Ignore library files but not the gdextension file
 /bin/**
 !project/bin/*.gdextension

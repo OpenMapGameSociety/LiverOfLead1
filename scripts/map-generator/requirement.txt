@@ -1,2 +1,6 @@
 pillow
 numpy
+geopandas
+rasterio
+shapely
+pyogrio
