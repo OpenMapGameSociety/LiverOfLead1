@@ -651,6 +651,67 @@ def save_terrain(image: Any, output_dir: Path) -> None:
     print(f"Wrote {path}")
 
 
+def render_preview(
+    province_ids: Any,
+    provinces_gdf: Any,
+    layers: dict[str, Any],
+    bounds: MapBounds,
+    palette: dict[str, Any],
+) -> Any:
+    """Composite a full in-game preview image.
+
+    The preview starts from the per-province colour fill (the gameplay bitmap),
+    then blends every overlay layer on top in draw order:
+      province borders → rivers → roads → railways → cities
+
+    This gives an accurate representation of what the map looks like in-game
+    with all overlays active, without requiring a game engine to combine them.
+
+    Parameters
+    ----------
+    province_ids:
+        H×W uint32 array of province codes produced by rasterize_province_ids.
+    provinces_gdf:
+        GeoDataFrame with a ``color`` column per province.
+    layers:
+        Dict of layer name → GeoDataFrame, as returned by extract_osm_layers.
+    bounds:
+        MapBounds describing the projected coordinate extent and pixel size.
+    palette:
+        Style palette dict (colours and alpha values).
+
+    Returns
+    -------
+    H×W×3 uint8 NumPy array ready to be saved as an image.
+    """
+    # Start from the province colour fill — the canonical gameplay bitmap.
+    image = province_ids_to_rgb(province_ids, provinces_gdf)
+
+    # Province borders on top of the fill.
+    image = draw_province_borders(image, province_ids, palette)
+
+    # Overlay layers in ascending visual priority.
+    if "rivers" in layers and not layers["rivers"].empty:
+        image = draw_line_layer(image, layers["rivers"], bounds, palette["river"], palette["river_alpha"], 2)
+    if "roads" in layers and not layers["roads"].empty:
+        image = draw_line_layer(image, layers["roads"], bounds, palette["road"], palette["road_alpha"], 4)
+    if "railways" in layers and not layers["railways"].empty:
+        image = draw_line_layer(image, layers["railways"], bounds, palette["rail"], palette["rail_alpha"], 2)
+    if "cities" in layers and not layers["cities"].empty:
+        image = draw_point_layer(image, layers["cities"], bounds, palette["city"], palette["city_alpha"], 4)
+
+    return image
+
+
+def save_preview(image: Any, output_dir: Path) -> None:
+    """Write the preview image to *output_dir*/preview.png."""
+    path = output_dir / "preview.png"
+    pil_image = Image.fromarray(image, mode="RGB")
+    pil_image.save(path)
+    pil_image.close()
+    print(f"Wrote {path}")
+
+
 def save_overlay(layer: Any, bounds: MapBounds, palette: dict[str, Any], config: dict[str, Any], output_dir: Path) -> None:
     overlay_name = config["overlay"]
     if overlay_name is None or layer is None or layer.empty:
@@ -794,6 +855,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--no-terrain", action="store_true", help="Skip terrain.png rendering.")
     parser.add_argument("--no-overlays", action="store_true", help="Skip transparent road/rail/river/city overlay PNGs.")
+    parser.add_argument(
+        "--preview",
+        action="store_true",
+        help=(
+            "Render preview.png: province colours + borders + all overlay layers composited into "
+            "a single image, showing exactly what the in-game map looks like with all overlays active."
+        ),
+    )
     return parser
 
 
@@ -869,6 +938,14 @@ def main() -> int:
             for config in OSM_LAYER_CONFIGS:
                 save_overlay(layers.get(config["name"]), bounds, palette, config, args.output)
         save_layers_geojson(layers, args.output)
+
+    if args.preview:
+        if args.no_osm_layers:
+            # No overlay layers were downloaded; render province colours + borders only.
+            print("Warning: --preview without OSM layers — rendering province fill and borders only.")
+        palette = STYLE_PALETTES[args.style]
+        preview_image = render_preview(province_ids, provinces_gdf, layers, bounds, palette)
+        save_preview(preview_image, args.output)
 
     elapsed_seconds = time.time() - start_time
     save_metadata(args, provinces_gdf, bounds, adjacencies, layers, elapsed_seconds)
