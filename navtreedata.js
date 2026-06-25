@@ -25,36 +25,35 @@
 var NAVTREE =
 [
   [ "Liver Of Lead 1", "index.html", [
-    [ "LiverOfLead1 Claude Code skills", "md_AI_skills.html", [
-      [ "Usage examples", "md_AI_skills.html#autotoc_md1", null ],
-      [ "Skill locations", "md_AI_skills.html#autotoc_md2", null ],
-      [ "Notes", "md_AI_skills.html#autotoc_md3", null ]
-    ] ],
-    [ "How to use Claude Code", "md_AI_tutorial.html", [
-      [ "Beginner directions for using Claude Code", "md_AI_tutorial.html#autotoc_md5", null ],
-      [ "Creating and using skills", "md_AI_tutorial.html#autotoc_md6", null ]
-    ] ],
-    [ "CLAUDE.md", "md_CLAUDE.html", [
-      [ "Project overview", "md_CLAUDE.html#autotoc_md8", null ],
-      [ "Common commands", "md_CLAUDE.html#autotoc_md9", [
-        [ "SCons build", "md_CLAUDE.html#autotoc_md10", null ],
-        [ "CMake build", "md_CLAUDE.html#autotoc_md11", null ],
-        [ "Formatting", "md_CLAUDE.html#autotoc_md12", null ],
-        [ "Tests", "md_CLAUDE.html#autotoc_md13", null ],
-        [ "CI", "md_CLAUDE.html#autotoc_md14", null ]
-      ] ],
-      [ "Architecture notes", "md_CLAUDE.html#autotoc_md15", [
-        [ "Build system", "md_CLAUDE.html#autotoc_md16", null ],
-        [ "Native extension registration", "md_CLAUDE.html#autotoc_md17", null ],
-        [ "Godot project", "md_CLAUDE.html#autotoc_md18", null ]
+    [ "Liver Of Lead 1 Game Condition Of Operation", "md_doc_CONOPS.html", [
+      [ "Project Abstract", "md_doc_CONOPS.html#autotoc_md1", [
+        [ "High Level Requirement", "md_doc_CONOPS.html#autotoc_md2", null ],
+        [ "Conceptual Design", "md_doc_CONOPS.html#autotoc_md3", null ],
+        [ "Required Resources", "md_doc_CONOPS.html#autotoc_md4", null ],
+        [ "Background & References", "md_doc_CONOPS.html#autotoc_md5", null ]
       ] ]
     ] ],
-    [ "LICENSE", "md_LICENSE.html", null ],
-    [ "LiverOfLead1", "md_README.html", null ],
+    [ "Context", "md_doc_README.html", [
+      [ "Architecture", "md_doc_README.html#autotoc_md7", null ]
+    ] ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ]
+      ] ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Data Fields", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
