@@ -34,8 +34,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: 'docs/html'
+          # Upload html doc repo
+          path: $GITHUB_WORKSPACE/docs/html
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
