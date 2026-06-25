@@ -29,10 +29,11 @@ jobs:
           doxygen_version: 1.9.6
       - name : Get Doxygen Awesome CSS
         run: |
+          cd docs/html
           git submodule add https://github.com/jothepro/doxygen-awesome-css.git
           cd doxygen-awesome-css
           git checkout v2.4.2
-          cd ../
+          cd ../../../
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
