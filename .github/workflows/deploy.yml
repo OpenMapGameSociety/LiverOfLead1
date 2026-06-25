@@ -20,6 +20,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name : Get Doxygen Awesome CSS
+        run: |
+          git submodule add https://github.com/jothepro/doxygen-awesome-css.git
+          cd doxygen-awesome-css
+          git checkout v2.4.2
+          cd ../
       - uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -27,14 +33,6 @@ jobs:
           folder: docs/html
           config_file: Doxyfile
           doxygen_version: 1.9.6
-      - name : Get Doxygen Awesome CSS
-        run: |
-          rm docs/.gitignore
-          cd docs/html
-          git submodule add https://github.com/jothepro/doxygen-awesome-css.git
-          cd doxygen-awesome-css
-          git checkout v2.4.2
-          cd ../../../
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
