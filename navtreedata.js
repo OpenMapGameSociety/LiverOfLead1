@@ -36,6 +36,32 @@ var NAVTREE =
     [ "Context", "md_doc_README.html", [
       [ "Architecture", "md_doc_README.html#autotoc_md7", null ]
     ] ],
+    [ "LiverOfLead1 Claude Code skills", "md_AI_skills.html", [
+      [ "Usage examples", "md_AI_skills.html#autotoc_md9", null ],
+      [ "Skill locations", "md_AI_skills.html#autotoc_md10", null ],
+      [ "Notes", "md_AI_skills.html#autotoc_md11", null ]
+    ] ],
+    [ "How to use Claude Code", "md_AI_tutorial.html", [
+      [ "Beginner directions for using Claude Code", "md_AI_tutorial.html#autotoc_md13", null ],
+      [ "Creating and using skills", "md_AI_tutorial.html#autotoc_md14", null ]
+    ] ],
+    [ "CLAUDE.md", "md_CLAUDE.html", [
+      [ "Project overview", "md_CLAUDE.html#autotoc_md16", null ],
+      [ "Common commands", "md_CLAUDE.html#autotoc_md17", [
+        [ "SCons build", "md_CLAUDE.html#autotoc_md18", null ],
+        [ "CMake build", "md_CLAUDE.html#autotoc_md19", null ],
+        [ "Formatting", "md_CLAUDE.html#autotoc_md20", null ],
+        [ "Tests", "md_CLAUDE.html#autotoc_md21", null ],
+        [ "CI", "md_CLAUDE.html#autotoc_md22", null ]
+      ] ],
+      [ "Architecture notes", "md_CLAUDE.html#autotoc_md23", [
+        [ "Build system", "md_CLAUDE.html#autotoc_md24", null ],
+        [ "Native extension registration", "md_CLAUDE.html#autotoc_md25", null ],
+        [ "Godot project", "md_CLAUDE.html#autotoc_md26", null ]
+      ] ]
+    ] ],
+    [ "LICENSE", "md_LICENSE.html", null ],
+    [ "LiverOfLead1", "md_README.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

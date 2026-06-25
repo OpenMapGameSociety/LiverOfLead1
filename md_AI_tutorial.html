@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Liver Of Lead 1: Related Pages</title>
+<title>Liver Of Lead 1: How to use Claude Code</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('pages.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('md_AI_tutorial.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,22 +91,53 @@ $(document).ready(function(){initNavTree('pages.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Related Pages</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">How to use Claude Code </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="toggleFolder('0_')">&#9658;</span><a class="el" href="md_doc_CONOPS.html" target="_self">Liver Of Lead 1 Game Condition Of Operation</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_1_" class="arrow" onclick="toggleFolder('1_')">&#9658;</span><a class="el" href="md_doc_README.html" target="_self">Context</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="toggleFolder('2_')">&#9658;</span><a class="el" href="md_AI_skills.html" target="_self">LiverOfLead1 Claude Code skills</a></td><td class="desc"></td></tr>
-<tr id="row_3_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="toggleFolder('3_')">&#9658;</span><a class="el" href="md_AI_tutorial.html" target="_self">How to use Claude Code</a></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_4_" class="arrow" onclick="toggleFolder('4_')">&#9658;</span><a class="el" href="md_CLAUDE.html" target="_self">CLAUDE.md</a></td><td class="desc"></td></tr>
-<tr id="row_5_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_LICENSE.html" target="_self">LICENSE</a></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_README.html" target="_self">LiverOfLead1</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><ol type="1">
+<li>Go to <a href="https://openrouter.ai/">OpenRouter</a> and create an API Key (don''t forget to save it somewhere, you won't be able to see it again)</li>
+<li>Go to <a href="https://github.com/Alishahryar1/free-claude-code">Free Claude Code</a> and follow instructions</li>
+<li>Launch <code>fcc-server</code> and add the API key to the <code>OpenRouter</code> field and click on <code>Apply</code> and <code>Refresh</code>.</li>
+<li>Launch <code>fcc-claude</code> <b>inside the repo</b> to launch Claude Code in terminal mode.</li>
+<li>Switch model to <code>nex-n2-pro:free</code> (Sonnet equivalent) with <code>/model</code>.</li>
+<li>Enjoy!</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Beginner directions for using Claude Code</h1>
+<ol type="1">
+<li>Start Claude Code from inside the repository folder so it can see the project files.</li>
+<li>Ask Claude Code to inspect the code before making changes. For example: <code>Please read CLAUDE.md, README.md, and the relevant source files, then explain the best way to make this change.</code></li>
+<li>Use slash commands for common tasks:<ul>
+<li><code>/init</code> creates or updates <code>CLAUDE.md</code> for future Claude Code sessions.</li>
+<li><code>/model</code> changes the model used by Claude Code.</li>
+<li><code>/usage</code> opens the settings dialog.</li>
+</ul>
+</li>
+<li>When Claude Code proposes a multi-file or high-impact change, review the suggested plan before approving it.</li>
+<li>After Claude Code edits files, check the results with normal repo commands such as <code>git diff</code>, then build or run the project before committing.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Creating and using skills</h1>
+<p>Claude Code skills are reusable command helpers that package instructions for a specific workflow. They are useful when you want Claude Code to follow the same steps repeatedly, such as running tests, generating reports, or performing a review.</p>
+<ol type="1">
+<li>Put skill files in the repository's <code>.claude/commands/</code> folder.</li>
+<li>Name the file after the slash command you want. For example, <code>.claude/commands/test.md</code> creates the <code>/test</code> skill.</li>
+<li>Start the file with a short description of what the skill does.</li>
+<li>Add the exact commands or steps Claude Code should run.</li>
+<li>Use the skill from the terminal by typing its slash command, for example <code>/test</code>.</li>
+</ol>
+<p>Example <code>.claude/commands/test.md</code>:</p>
+<div class="fragment"><div class="line"># Run project tests</div>
+<div class="line"> </div>
+<div class="line">Run the project&#39;s test suite and report the result.</div>
+<div class="line"> </div>
+<div class="line">1. Run `scons target=template_debug platform=windows arch=x86_64 precision=double`.</div>
+<div class="line">2. Run any available test commands from `CLAUDE.md`.</div>
+<div class="line">3. Summarize failures and suggest the next fix.</div>
+</div><!-- fragment --><p>Skills are best for repeatable workflows. For one-off tasks, ask Claude Code directly in natural language. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
