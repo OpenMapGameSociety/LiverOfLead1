@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload html doc repo
-          path: $GITHUB_WORKSPACE/docs/html/
+          path: "docs/html/"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
