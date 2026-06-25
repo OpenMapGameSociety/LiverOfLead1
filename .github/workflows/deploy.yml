@@ -20,6 +20,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
       - name : Get Doxygen Awesome CSS
         run: |
           git submodule add https://github.com/jothepro/doxygen-awesome-css.git
