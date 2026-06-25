@@ -27,15 +27,13 @@ jobs:
           folder: docs/html
           config_file: Doxyfile
           doxygen_version: 1.9.6
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload html doc repo
-          path: $GITHUB_WORKSPACE/docs/html
+          path: $GITHUB_WORKSPACE/docs/html/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
